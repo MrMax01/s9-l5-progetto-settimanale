@@ -1,8 +1,9 @@
 import { Component } from "react";
-import { Col, Container, Row, Spinner } from "react-bootstrap";
+import { Alert, Col, Container, Row, Spinner } from "react-bootstrap";
 import SingleFilm from "./SingleFilm";
 class FilmList extends Component {
   state = {
+    hasError: false,
     isLoading: true,
     filmList: [],
   };
@@ -12,6 +13,8 @@ class FilmList extends Component {
       .then((response) => {
         if (response.ok) {
           return response.json();
+        } else {
+          this.setState({ hasError: true });
         }
       })
       .then((res) => {
@@ -19,7 +22,10 @@ class FilmList extends Component {
         // console.log(films);
         this.setState({ filmList: films });
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        console.log(err);
+        this.setState({ hasError: true });
+      })
       .finally(() => {
         this.setState({ isLoading: false });
       });
@@ -28,7 +34,8 @@ class FilmList extends Component {
     return (
       <Container className="mb-5">
         <h2 className="text-white text-capitalize">{this.props.films}</h2>
-        <Row xs={2} md={4} lg={6} gx={1}>
+        <Row xs={2} md={4} lg={6} className="gx-1">
+          {this.state.hasError && <Alert variant="danger">Errore nella fetch</Alert>}
           {this.state.isLoading && <Spinner animation="border" variant="light" className="mx-auto" />}
           {this.state.filmList.map((film) => (
             <Col key={film.imdbID} className="text-white">
