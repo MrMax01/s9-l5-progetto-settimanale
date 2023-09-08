@@ -3,7 +3,7 @@ import logo from "./netflix_logo.png";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import HeaderSection from "./components/HeaderSection";
-import FilmList from "./components/FilmList";
+import Home from "./components/Home";
 import MyFooter from "./components/MyFooter";
 
 function App() {
@@ -11,9 +11,7 @@ function App() {
     <div className="App">
       <NavBar logo={logo} />
       <HeaderSection />
-      <FilmList films="batman" />
-      <FilmList films="lord of rings" />
-      <FilmList films="harry potter" />
+      <Home />
       <MyFooter />
     </div>
   );
