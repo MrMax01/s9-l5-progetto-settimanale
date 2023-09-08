@@ -36,7 +36,7 @@ function NavBar(props) {
                 <Dropdown>
                   <Dropdown.Toggle variant="dark" id="dropdown-basic"></Dropdown.Toggle>
 
-                  <Dropdown.Menu>
+                  <Dropdown.Menu className="dropdown-menu-dark dropdown-menu-end">
                     <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                     <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                     <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
